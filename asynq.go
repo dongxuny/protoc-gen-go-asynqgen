@@ -364,7 +364,6 @@ func _handle_task_before(ctx context.Context, task *asynq.Task, in interface{}) 
 
 	// create new span
 	ctx, span := tHolder.tracer.Start(oteltrace.ContextWithRemoteSpanContext(ctx, spanCtx), task.Type())
-	defer span.End()
 
 	ctx = context.WithValue(ctx, spanKey, span)
 	ctx = context.WithValue(ctx, traceIdKey, span.SpanContext().TraceID().String())

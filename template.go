@@ -66,6 +66,7 @@ func (c *{{$svrType}}TaskClientImpl) {{.Name}}(ctx context.Context, in *{{.Reque
 	// get trace metadata
 	m := make(map[string]string)
 	tHolder.propagator.Inject(ctx, propagation.MapCarrier(m))
+	defer span.End()
 
 	wrap, err := json.Marshal(wrapPayload{
 		Trace: m,
