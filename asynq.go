@@ -385,6 +385,8 @@ func _handle_task_after(span oteltrace.Span, err error) {
 	} else {
 		span.SetStatus(codes.Ok, "success")
 	}
+
+	span.End()
 }
 `
 	wrapPayload = "type wrapPayload struct {\n\tTrace map[string]string `json:\"trace\"`\n\tPayload interface{} `json:\",inline\"`\n}"
