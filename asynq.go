@@ -381,6 +381,7 @@ func _handle_task_before(ctx context.Context, task *asynq.Task, in interface{}) 
 
 func _handle_task_after(span oteltrace.Span, err error) {
 	if err != nil {
+		span.RecordError(err)
 		span.SetStatus(codes.Error, fmt.Sprintf("%v", err))
 	} else {
 		span.SetStatus(codes.Ok, "success")

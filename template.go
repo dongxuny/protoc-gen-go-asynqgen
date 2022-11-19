@@ -62,7 +62,6 @@ func (c *{{$svrType}}TaskClientImpl) {{.Name}}(ctx context.Context, in *{{.Reque
 
 	spanCtx := oteltrace.SpanContextFromContext(ctx)
 	ctx, span := tHolder.tracer.Start(oteltrace.ContextWithRemoteSpanContext(ctx, spanCtx), "{{.Name}}Client")
-	defer span.End()
 
 	// get trace metadata
 	m := make(map[string]string)
